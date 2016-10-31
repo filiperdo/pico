@@ -1,0 +1,225 @@
+/*** MENU ***/
+.sf-menu, .sf-menu * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sf-menu {
+	line-height: 1.0;
+}
+.menuHolder{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin-top: 0;
+	z-index: 50;
+	background: url('../img/bg_menu.jpg') repeat-x 0 0;
+}
+.sf-menu>li {
+	position: relative;
+	display: inline-block;
+	width: 177px;
+	height: 57px;
+	float: left;
+	text-align: center;
+}
+.sub-menu li{
+	float: none;
+}
+.sf-menu>li:first-child{
+	width: 55px;
+}
+.sf-menu>li:first-child a{
+	font-size: 0px!important;
+	line-height: 0px!important;
+}
+.sf-menu>li:after {
+	position: absolute;
+	display: block;
+	width: 2px;
+	height: 57px;
+	background: url('../img/separator.jpg') no-repeat 0 0;
+	top: 0;
+	right: 0;
+	pointer-events: none;
+	content: "";
+}
+.sf-menu>li.last:after{	
+	display:none;
+}
+.sf-menu a {
+	font: 600 14px/21px 'Open Sans', sans-serif;
+	display:inline-block;
+	color:#fff;
+	letter-spacing:0px;
+	text-transform:uppercase;
+	text-decoration: none;
+	position: relative;
+	margin: 0;
+	padding: 18px 0;
+	background: transparent;
+}
+.sf-menu > li >a{
+	width: 100%;
+}
+.sf-menu a:hover,
+.sf-menu li.current>a,
+.sf-menu li.sfHover>a {
+	color:#fff;
+	background: #181c1f;
+	text-decoration:none;
+}
+.sf-menu ul {
+	position: absolute;
+	top: -999em;
+	padding: 38px 0 27px;
+	background: #1a1e22 url('../img/bg_sub1.jpg') 0 0 repeat-x;
+}
+.sf-menu ul ul {
+	position: absolute;
+	top: -999em;
+	padding: 32px 0 21px;
+	background: #c7c7c7 url('../img/bg_sub2.jpg') 0 0 repeat-x;
+	-webkit-box-shadow: 0px 1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 1px 0 rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.sf-menu ul ul:after {
+	position: absolute;
+	display: block;
+	width: 5px;
+	height: 9px;
+	background: url('../img/arr_1.png') no-repeat 0 0;
+	top: 13px;
+	left: -5px;
+	pointer-events: none;
+	content: "";
+}
+.sf-menu ul li {
+	width: 177px;
+	height: 28px;
+	margin: 0;
+	text-align: center;
+}
+.sub-menu ul li {
+	width: 154px;
+}
+.sf-menu ul li a{
+	margin: 0;
+	font: 400 14px/15px 'Open Sans', sans-serif;
+	color: #fff;
+	padding: 0;
+	background: transparent;
+}
+.sf-menu ul li ul li a{
+	color: #696969;
+}
+.sf-menu li:hover {
+	visibility: inherit; /* fixes IE7 'sticky bug' */
+}
+/* submenu_1 position */
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul {
+	left: -1px;
+    top: 57px; /* match top ul list item height */
+	z-index: 99;
+}
+/* submenu_2 */
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul {
+	top: -999em;
+}
+/* submenu_2 position */
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+	left: 189px;
+	top: 56px;
+}
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul {
+	top: -999em;
+}
+.sf-menu li li a:hover,
+.sf-menu li.sfHover li.sfHover > a {
+	color: #84d1fd !important;/* submenu_1 hover */
+	background: transparent;
+}
+.sf-menu li li li a:hover,
+.sf-menu li li.sfHover li li.sfHover > a {
+	color: #84d1fd !important;/* submenu_2 hover */
+}
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+	left: 10em; /* match ul width */
+	top: 0;
+}
+.sf-menu > li > a .menu-arrow {
+	display: block;
+	width: 5px;
+	height: 3px;
+	position: absolute;
+	left: 49%;
+	top: 42px;
+	text-indent: -100%;
+	font-size: 0;
+	line-height: 0;
+	background: url('../img/menu_arrow.png') 0 -7px no-repeat;
+	vertical-align: middle;
+	z-index: 800;
+}
+.sf-menu ul > li > a .menu-arrow {
+	display: block;
+	width: 5px;
+	height: 3px;
+	position: absolute;
+	left: 135%;
+	top: 6px;
+	text-indent: -100%;
+	font-size: 0;
+	line-height: 0;
+	background: url('../img/menu_arrow.png') 0 -7px no-repeat;
+	vertical-align: middle;
+	z-index: 800;
+}
+/* end submenu_2 */
+
+.sf-menu a{
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+/* Design for a width of 768px */
+@media only screen and (max-width: 995px) {
+
+	
+}
+
+
+
+@media only screen and (max-width: 767px) {
+
+nav {
+	background: none;
+	float: left;
+	width: 100%;
+}
+nav select {
+    display: block !important;
+    height: 21px;
+    line-height: 21px;
+	border:1px solid #000;
+    outline: medium none;
+    padding: 0;
+    width: 100%;
+}
+nav span,
+.sf-menu{display:none}
+
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {	
+nav span,
+.sf-menu{display:none}
+ 
+}

@@ -1,0 +1,32 @@
+
+
+#toTop {
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	left:55%;
+	margin-left: 502px;
+	bottom:53px;
+	cursor:pointer;
+	overflow:hidden;
+	width:43px;
+	height:23px;
+	border:none;
+	text-indent:-999px;
+	z-index:20;
+	background:url(../img/ui.totop.png) no-repeat left 0px;
+}
+
+
+#toTop:hover {
+	background:url(../img/ui.totop.png) no-repeat left -23px;
+	width:43px;
+	height:23px;
+	display:block;
+	overflow:hidden;
+	float:left;
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
+}
