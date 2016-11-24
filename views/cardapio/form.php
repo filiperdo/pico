@@ -263,25 +263,64 @@
 	<div class="row">
 		<div class="col-md-12 text-center">
 			<h4>Dias em que o item estará disponível</h4>
+			<br  />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<input type="checkbox" name="segunda" value="segunda" checked  />Segunda
-			&nbsp;&nbsp;
-			<input type="checkbox" name="terca" value="segunda" checked />Terça
-			&nbsp;&nbsp;
-			<input type="checkbox" name="quarta" value="segunda" checked />Quarta
-			&nbsp;&nbsp;
-			<input type="checkbox" name="quinta" value="segunda" checked />Quinta
-			&nbsp;&nbsp;
-			<input type="checkbox" name="sexta" value="segunda" checked />Sexta
-			&nbsp;&nbsp;
-			<input type="checkbox" name="sabado" value="segunda" checked />Sábado
-			&nbsp;&nbsp;
-			<input type="checkbox" name="domingo" value="segunda" checked />Domingo
-			&nbsp;&nbsp;
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-center">Segunda</th>
+						<th class="text-center">Terça</th>
+						<th class="text-center">Quarta</th>
+						<th class="text-center">Quinta</th>
+						<th class="text-center">Sexta</th>
+						<th class="text-center">Sábado</th>
+						<th class="text-center">Domingo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td>
+						<input type="checkbox" name="segunda" value="segunda" checked  />
+					</td>
+					<td>
+						<input type="checkbox" name="terca" value="terca" checked />
+					</td>
+					<td>
+						<input type="checkbox" name="quarta" value="quarta" checked />
+					</td>
+					<td>
+						<input type="checkbox" name="quinta" value="quinta" checked />
+					</td>
+					<td>
+						<input type="checkbox" name="sexta" value="sexta" checked />
+					</td>
+					<td>
+						<input type="checkbox" name="sabado" value="sabado" checked />
+					</td>
+					<td>
+						<input type="checkbox" name="domingo" value="domingo" checked />
+					</td>
+				</tbody>
+			</table>
 		</div>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Horário em que o item estara disponível
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<td>
+					
+				</td>
+			</tbody>
+		</table>
 	</div>
 </div><!-- step-3 -->
 </div><!-- form wizard -->
@@ -333,6 +372,7 @@
 			onLeaveStep: onLeaveStepCallback
 
 		});
+
 		function onLeaveStepCallback(obj, context) {
 			if (context.fromStep == 1) {
 				var validate = $('#form-item').parsley().validate();
