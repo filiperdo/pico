@@ -1,18 +1,18 @@
-<?php 
+<?php
 
-/** 
+/**
  * Classe Cardapio
- * @author __ 
+ * @author __
  *
  * Data: 11/10/2016
- */ 
+ */
 
 include_once 'categoria_model.php';
 
 class Cardapio_Model extends Model
 {
-	/** 
-	* Atributos Private 
+	/**
+	* Atributos Private
 	*/
 	private $id_cardapio;
 	private $item;
@@ -37,7 +37,7 @@ class Cardapio_Model extends Model
 		$this->categoria = new Categoria_Model();
 	}
 
-	/** 
+	/**
 	* Metodos set's
 	*/
 	public function setId_cardapio( $id_cardapio )
@@ -80,7 +80,7 @@ class Cardapio_Model extends Model
 		$this->categoria = $categoria;
 	}
 
-	/** 
+	/**
 	* Metodos get's
 	*/
 	public function getId_cardapio()
@@ -124,7 +124,7 @@ class Cardapio_Model extends Model
 	}
 
 
-	/** 
+	/**
 	* Metodo create
 	*/
 	public function create( $data )
@@ -137,10 +137,10 @@ class Cardapio_Model extends Model
 		}
 
 		$this->db->commit();
-		return true;
+		return $id;
 	}
 
-	/** 
+	/**
 	* Metodo edit
 	*/
 	public function edit( $data, $id )
@@ -156,14 +156,14 @@ class Cardapio_Model extends Model
 		return $update;
 	}
 
-	/** 
+	/**
 	* Metodo delete
 	*/
 	public function delete( $id )
 	{
 		$this->db->beginTransaction();
 
-		if( !$delete = $this->db->delete("cardapio", "id_cardapio = {$id} ") ){ 
+		if( !$delete = $this->db->delete("cardapio", "id_cardapio = {$id} ") ){
 			$this->db->rollBack();
 			return false;
 		}
@@ -172,7 +172,7 @@ class Cardapio_Model extends Model
 		return $delete;
 	}
 
-	/** 
+	/**
 	* Metodo obterCardapio
 	*/
 	public function obterCardapio( $id_cardapio )
@@ -185,7 +185,7 @@ class Cardapio_Model extends Model
 		return $this->montarObjeto( $result[0] );
 	}
 
-	/** 
+	/**
 	* Metodo listarCardapio
 	*/
 	public function listarCardapio()
@@ -195,7 +195,7 @@ class Cardapio_Model extends Model
 
 		if ( isset( $_POST["like"] ) )
 		{
-			$sql .= "where id_cardapio like :id "; // Configurar o like com o campo necessario da tabela 
+			$sql .= "where id_cardapio like :id "; // Configurar o like com o campo necessario da tabela
 			$result = $this->db->select( $sql, array("id" => "%{$_POST["like"]}%") );
 		}
 		else
@@ -204,7 +204,7 @@ class Cardapio_Model extends Model
 		return $this->montarLista($result);
 	}
 
-	/** 
+	/**
 	* Metodo montarLista
 	*/
 	private function montarLista( $result )
@@ -223,7 +223,7 @@ class Cardapio_Model extends Model
 		return $objs;
 	}
 
-	/** 
+	/**
 	* Metodo montarObjeto
 	*/
 	private function montarObjeto( $row )

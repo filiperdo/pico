@@ -2,6 +2,7 @@
 
 require 'models/categoria_model.php';
 require 'models/complemento_model.php';
+include_once 'models/cardapio_complemento_model.php';
 
 class Cardapio extends Controller {
 
@@ -91,7 +92,18 @@ class Cardapio extends Controller {
 			'id_categoria' => $_POST["id_categoria"],
 		);
 
-		$this->model->create( $data ) ? $msg = base64_encode( "OPERACAO_SUCESSO" ) : $msg = base64_encode( "OPERACAO_ERRO" );
+		$id_cardapio = $this->model->create( $data )
+
+		$cardapioComplementoModel = new Cardapio_complemento_Model();
+		foreach ($_POST["complementos"] as $key => $id_complemento) {
+			$data_cardapio_complemento = array(
+				'id_complemento' => $id_complemento,
+				'id_cardapio' => $id_cardapio
+			);
+			$cardapioComplementoModel->create($data_cardapio_complemento);
+		}
+
+		//$this->model->create( $data ) ? $msg = base64_encode( "OPERACAO_SUCESSO" ) : $msg = base64_encode( "OPERACAO_ERRO" );
 
 		header("location: " . URL . "cardapio?st=".$msg);
 	}

@@ -282,25 +282,25 @@
 				</thead>
 				<tbody>
 					<td>
-						<input type="checkbox" name="segunda" value="segunda" checked  />
+						<input type="checkbox" name="segunda" id="segunda" value="1" checked  />
 					</td>
 					<td>
-						<input type="checkbox" name="terca" value="terca" checked />
+						<input type="checkbox" name="terca" id="terca" value="1" checked />
 					</td>
 					<td>
-						<input type="checkbox" name="quarta" value="quarta" checked />
+						<input type="checkbox" name="quarta" id="quarta" value="1" checked />
 					</td>
 					<td>
-						<input type="checkbox" name="quinta" value="quinta" checked />
+						<input type="checkbox" name="quinta" id="quinta" value="1" checked />
 					</td>
 					<td>
-						<input type="checkbox" name="sexta" value="sexta" checked />
+						<input type="checkbox" name="sexta" id="sexta" value="1" checked />
 					</td>
 					<td>
-						<input type="checkbox" name="sabado" value="sabado" checked />
+						<input type="checkbox" name="sabado" id="sabado" value="1" checked />
 					</td>
 					<td>
-						<input type="checkbox" name="domingo" value="domingo" checked />
+						<input type="checkbox" name="domingo" id="domingo" value="1" checked />
 					</td>
 				</tbody>
 			</table>
@@ -310,14 +310,44 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>Horário em que o item estara disponível</th>
 					<th>
-						Horário em que o item estara disponível
+						Período 1<br  />
+						Inicio
 					</th>
+					<th>Fim</th>
+					<th>
+						Período 2<br  />
+						Inicio
+					</th>
+					<th>Fim</th>
 				</tr>
 			</thead>
 			<tbody>
 				<td>
-					
+					<select id="hrDisponivel">
+						<option>Sempre Disponível</option>
+					</select>
+				</td>
+				<td>
+					<select id="hrInicio1">
+						<option>00:00</option>
+					</select>
+				</td>
+				<td>
+					<select id="hrFim1">
+						<option>00:00</option>
+					</select>
+				</td>
+				<td>
+					<select id="hrInicio2">
+						<option>00:00</option>
+					</select>
+				</td>
+				<td>
+					<select id="hrFim2">
+						<option>00:00</option>
+					</select>
 				</td>
 			</tbody>
 		</table>
@@ -331,6 +361,16 @@
 </div>
 </div>
 <!-- /.row -->
+
+<div class="modal fade in" id="myModal" role="dialog">
+	<div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Aguarge...</p>
+        </div>
+      </div>
+    </div>
+</div>
 <!-- bootstrap progress js -->
 <script src="<?php echo URL?>public/js/progressbar/bootstrap-progressbar.min.js"></script>
 <script src="<?php echo URL?>public/js/nicescroll/jquery.nicescroll.min.js"></script>
@@ -350,12 +390,20 @@
 <script src="<?php echo URL?>public/js/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 	var table;
+	var complementos = [];
 
 	function addDataSet(obj) {
+		complementos.push(obj);
 		table.row.add(obj).draw();
 	}
 
 	$('#datatable-complemento tbody').on( 'click', 'button', function () {
+		var data = table.row( $(this).parents('tr') ).data();
+		for (var i = 0; i < complementos.length; i++) {
+			if (complementos[i][0] == data[0]) {
+				complementos.splice(i, 1);
+			}
+		}
 		table
 			.row( $(this).parents('tr') )
 			.remove()
@@ -385,7 +433,25 @@
 		}
 
 		function onFinishCallback() {
-		  alert('Finish Clicked');
+			$('#myModal').modal('show');
+			var objPost = {
+				item: $("#item").val(),
+				descricao: $("#descricao").val(),
+				preco: $("#preco").val(),
+				ativo: $("#ativo").is(":checked") ? 1 : 0,
+				promocao: $("#promocao").is(":checked") ? 1 : 0,
+				id_categoria: $("#id_categoria").val(),
+				complementos: complementos,
+				hrInicio1: $("#hrInicio1").val(),
+				hrFim1: $("#hrFim1").val(),
+				hrInicio2: $("#hrInicio2").val(),
+				hrFim2: $("#hrFim2").val()
+			};
+			console.log("Objeto to post: " + objPost);
+		  	$.post('<?php echo URL . 'cardapio/create/';?>', objPost, function(result){
+            	//window.location.href = '<?php echo URL . 'cardapio/index/';?>';
+				$('#myModal').modal('hide');
+        	});
 		}
 
 		$.listen('parsley:field:validate', function() {
