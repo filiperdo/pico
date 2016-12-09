@@ -1,19 +1,19 @@
-<?php 
+<?php
 
-/** 
+/**
  * Classe Cardapio_complemento
- * @author __ 
+ * @author __
  *
  * Data: 11/10/2016
- */ 
+ */
 
 include_once 'complemento_model.php';
 include_once 'cardapio_model.php';
 
 class Cardapio_complemento_Model extends Model
 {
-	/** 
-	* Atributos Private 
+	/**
+	* Atributos Private
 	*/
 	private $complemento;
 	private $cardapio;
@@ -26,7 +26,7 @@ class Cardapio_complemento_Model extends Model
 		$this->cardapio = new Cardapio_Model();
 	}
 
-	/** 
+	/**
 	* Metodos set's
 	*/
 	public function setComplemento( Complemento_Model $complemento )
@@ -39,7 +39,7 @@ class Cardapio_complemento_Model extends Model
 		$this->cardapio = $cardapio;
 	}
 
-	/** 
+	/**
 	* Metodos get's
 	*/
 	public function getComplemento()
@@ -53,14 +53,14 @@ class Cardapio_complemento_Model extends Model
 	}
 
 
-	/** 
+	/**
 	* Metodo create
 	*/
 	public function create( $data )
 	{
 		$this->db->beginTransaction();
-
-		if( !$id = $this->db->insert( "cardapio_complemento", $data ) ){
+		
+		if( !$id = $this->db->insert( "cardapio_complemento", $data, false ) ){
 			$this->db->rollBack();
 			return false;
 		}
@@ -69,7 +69,7 @@ class Cardapio_complemento_Model extends Model
 		return true;
 	}
 
-	/** 
+	/**
 	* Metodo edit
 	*/
 	public function edit( $data, $id )
@@ -85,14 +85,14 @@ class Cardapio_complemento_Model extends Model
 		return $update;
 	}
 
-	/** 
+	/**
 	* Metodo delete
 	*/
 	public function delete( $id )
 	{
 		$this->db->beginTransaction();
 
-		if( !$delete = $this->db->delete("cardapio_complemento", "id_cardapio_complemento = {$id} ") ){ 
+		if( !$delete = $this->db->delete("cardapio_complemento", "id_cardapio_complemento = {$id} ") ){
 			$this->db->rollBack();
 			return false;
 		}
@@ -101,7 +101,7 @@ class Cardapio_complemento_Model extends Model
 		return $delete;
 	}
 
-	/** 
+	/**
 	* Metodo obterCardapio_complemento
 	*/
 	public function obterCardapio_complemento( $id_cardapio_complemento )
@@ -114,7 +114,7 @@ class Cardapio_complemento_Model extends Model
 		return $this->montarObjeto( $result[0] );
 	}
 
-	/** 
+	/**
 	* Metodo listarCardapio_complemento
 	*/
 	public function listarCardapio_complemento()
@@ -124,7 +124,7 @@ class Cardapio_complemento_Model extends Model
 
 		if ( isset( $_POST["like"] ) )
 		{
-			$sql .= "where id_cardapio_complemento like :id "; // Configurar o like com o campo necessario da tabela 
+			$sql .= "where id_cardapio_complemento like :id "; // Configurar o like com o campo necessario da tabela
 			$result = $this->db->select( $sql, array("id" => "%{$_POST["like"]}%") );
 		}
 		else
@@ -133,7 +133,7 @@ class Cardapio_complemento_Model extends Model
 		return $this->montarLista($result);
 	}
 
-	/** 
+	/**
 	* Metodo montarLista
 	*/
 	private function montarLista( $result )
@@ -152,7 +152,7 @@ class Cardapio_complemento_Model extends Model
 		return $objs;
 	}
 
-	/** 
+	/**
 	* Metodo montarObjeto
 	*/
 	private function montarObjeto( $row )

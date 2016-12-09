@@ -1,8 +1,7 @@
 <?php
 
-require 'models/categoria_model.php';
-require 'models/complemento_model.php';
-include_once 'models/cardapio_complemento_model.php';
+require_once 'models/categoria_model.php';
+require_once 'models/complemento_model.php';
 
 class Cardapio extends Controller {
 
@@ -82,6 +81,9 @@ class Cardapio extends Controller {
 	*/
 	public function create()
 	{
+		require_once 'models/cardapio_complemento_model.php';
+		require_once 'models/disponibilidade_model.php';
+
 		$data = array(
 			'item' => $_POST["item"],
 			'descricao' => $_POST["descricao"],
@@ -92,20 +94,39 @@ class Cardapio extends Controller {
 			'id_categoria' => $_POST["id_categoria"],
 		);
 
-		$id_cardapio = $this->model->create( $data )
+		$id_cardapio = $this->model->create( $data );
 
-		$cardapioComplementoModel = new Cardapio_complemento_Model();
-		foreach ($_POST["complementos"] as $key => $id_complemento) {
-			$data_cardapio_complemento = array(
-				'id_complemento' => $id_complemento,
-				'id_cardapio' => $id_cardapio
-			);
-			$cardapioComplementoModel->create($data_cardapio_complemento);
+		if (isset($_POST["complementos"])) {
+			$cardapioComplementoModel = new Cardapio_complemento_Model();
+			foreach ($_POST["complementos"] as $key => $complemento) {
+				$data_cardapio_complemento = array(
+					'id_complemento' => $complemento[0],
+					'id_cardapio' => $id_cardapio
+				);
+				$cardapioComplementoModel->create($data_cardapio_complemento);
+			}
 		}
 
+		$disponibilidadeModel = new Disponibilidade_Model();
+		$data_disponibilidade = array(
+			'segunda' => $_POST['segunda'],
+			'terca' => $_POST['terca'],
+			'quarta' => $_POST['quarta'],
+			'quinta' => $_POST['quinta'],
+			'sexta' => $_POST['sexta'],
+			'sabado' => $_POST['sabado'],
+			'domingo' => $_POST['domingo'],
+			'hora_inicio1' => $_POST['hrInicio1'],
+			'hora_fim1' => $_POST['hrFim1'],
+			'hora_inicio2' => $_POST['hrInicio2'],
+			'hora_fim2' => $_POST['hrFim2'],
+			'id_cardapio' => $id_cardapio
+		);
+		$disponibilidadeModel->create($data_disponibilidade);
 		//$this->model->create( $data ) ? $msg = base64_encode( "OPERACAO_SUCESSO" ) : $msg = base64_encode( "OPERACAO_ERRO" );
-
-		header("location: " . URL . "cardapio?st=".$msg);
+		header("Content-type: application/json; charset=utf-8");
+		echo json_encode(array("msg" => base64_encode( "OPERACAO_SUCESSO" )));
+		//header("location: " . URL . "cardapio?st=".$msg);
 	}
 
 	/**

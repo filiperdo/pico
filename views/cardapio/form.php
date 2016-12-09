@@ -441,15 +441,23 @@
 				ativo: $("#ativo").is(":checked") ? 1 : 0,
 				promocao: $("#promocao").is(":checked") ? 1 : 0,
 				id_categoria: $("#id_categoria").val(),
+				imagem: "",
 				complementos: complementos,
 				hrInicio1: $("#hrInicio1").val(),
 				hrFim1: $("#hrFim1").val(),
 				hrInicio2: $("#hrInicio2").val(),
-				hrFim2: $("#hrFim2").val()
+				hrFim2: $("#hrFim2").val(),
+				segunda: $("#segunda").is(":checked") ? 1 : 0,
+				terca: $("#terca").is(":checked") ? 1 : 0,
+				quarta: $("#quarta").is(":checked") ? 1 : 0,
+				quinta: $("#quinta").is(":checked") ? 1 : 0,
+				sexta: $("#sexta").is(":checked") ? 1 : 0,
+				sabado: $("#sabado").is(":checked") ? 1 : 0,
+				domingo: $("#domingo").is(":checked") ? 1 : 0
 			};
 			console.log("Objeto to post: " + objPost);
 		  	$.post('<?php echo URL . 'cardapio/create/';?>', objPost, function(result){
-            	//window.location.href = '<?php echo URL . 'cardapio/index/';?>';
+            	window.location.href = '<?php echo URL . 'cardapio/index/?st=';?>' + result.msg;
 				$('#myModal').modal('hide');
         	});
 		}
