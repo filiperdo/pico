@@ -75,15 +75,15 @@ class Cliente extends Controller {
 	{
 		$data = array(
 			'cliente' => $_POST["cliente"], 
-			'telefone' => $_POST["telefone"], 
-			'celular' => $_POST["celular"], 
+			'telefone' => Data::limpaFormatacao($_POST["telefone"]),
+			'celular' => Data::limpaFormatacao($_POST["celular"]),
 			'endereco' => $_POST["endereco"], 
 			'numero' => $_POST["numero"], 
 			'bairro' => $_POST["bairro"], 
 			'cidade' => $_POST["cidade"], 
 			'estado' => $_POST["estado"], 
 			'complemento' => $_POST["complemento"], 
-			'num_cep' => $_POST["num_cep"], 
+			'num_cep' => Data::limpaFormatacao($_POST["num_cep"]),
 		);
 
 		$this->model->edit( $data, $id ) ? $msg = base64_encode( "OPERACAO_SUCESSO" ) : $msg = base64_encode( "OPERACAO_ERRO" );

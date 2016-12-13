@@ -123,10 +123,8 @@ class Cardapio extends Controller {
 			'id_cardapio' => $id_cardapio
 		);
 		$disponibilidadeModel->create($data_disponibilidade);
-		//$this->model->create( $data ) ? $msg = base64_encode( "OPERACAO_SUCESSO" ) : $msg = base64_encode( "OPERACAO_ERRO" );
 		header("Content-type: application/json; charset=utf-8");
 		echo json_encode(array("msg" => base64_encode( "OPERACAO_SUCESSO" )));
-		//header("location: " . URL . "cardapio?st=".$msg);
 	}
 
 	/**

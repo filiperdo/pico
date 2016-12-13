@@ -264,6 +264,39 @@ class Data
 		return $string;
 	}
 
+	static public function limpaFormatacao($string)
+	{
+		$string = str_replace(' ','', $string);
+		$string = str_replace('-','', $string);
+		$string = str_replace('(','', $string);
+		$string = str_replace(')','', $string);
+		$string = str_replace(',','', $string);
+		$string = str_replace('.','', $string);
+		$string = str_replace(';','', $string);
+		$string = str_replace(':','', $string);
+		$string = str_replace('@','', $string);
+		$string = str_replace('#','', $string);
+		$string = str_replace('$','', $string);
+		$string = str_replace('%','', $string);
+		$string = str_replace('&','', $string);
+		$string = str_replace('*','', $string);
+		$string = str_replace('_','', $string);
+		$string = str_replace('[','', $string);
+		$string = str_replace(']','', $string);
+		$string = str_replace('{','', $string);
+		$string = str_replace('}','', $string);
+		$string = str_replace('?','', $string);
+		$string = str_replace('/','', $string);
+		$string = str_replace('\\','', $string);
+		$string = str_replace('|','', $string);
+		$string = str_replace('!','', $string);
+		$string = str_replace('"','', $string);
+		$string = str_replace('<','', $string);
+		$string = str_replace('>','', $string);
+		$string = preg_replace('/[a-zA-Z]/i', "", $string);
+		return $string;
+	}
+
 }
 
 ?>

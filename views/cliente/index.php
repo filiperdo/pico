@@ -37,17 +37,17 @@
 <table id="datatable-responsive" class="table table-striped" cellspacing="0" width="100%">
 	<thead>
 	<tr>
-		<th>Id_cliente </th>
+		<th>Id</th>
 		<th>Cliente </th>
 		<th>Telefone </th>
 		<th>Celular </th>
-		<th>Endereco </th>
-		<th>Numero </th>
+		<th>Endere&ccedil;o </th>
+		<th>N&uacute;mero </th>
 		<th>Bairro </th>
 		<th>Cidade </th>
 		<th>Estado </th>
 		<th>Complemento </th>
-		<th>Cep </th>
+		<th>CEP </th>
 		<th></th>
 	</tr>
 	</thead>

@@ -331,22 +331,42 @@
 				</td>
 				<td>
 					<select id="hrInicio1">
-						<option>00:00</option>
+						<?php
+						for ($i = 0; $i < 24;$i++) {
+							echo '<option value="'.str_pad($i, 2, "0", STR_PAD_LEFT).':00">'
+								.str_pad($i, 2, "0", STR_PAD_LEFT) . ':00</option>';
+						}
+						?>
 					</select>
 				</td>
 				<td>
 					<select id="hrFim1">
-						<option>00:00</option>
+						<?php
+						for ($i = 0; $i < 24;$i++) {
+							echo '<option value="'.str_pad($i, 2, "0", STR_PAD_LEFT).':00">'
+								.str_pad($i, 2, "0", STR_PAD_LEFT) . ':00</option>';
+						}
+						?>
 					</select>
 				</td>
 				<td>
 					<select id="hrInicio2">
-						<option>00:00</option>
+						<?php
+						for ($i = 0; $i < 24;$i++) {
+							echo '<option value="'.str_pad($i, 2, "0", STR_PAD_LEFT).':00">'
+								.str_pad($i, 2, "0", STR_PAD_LEFT) . ':00</option>';
+						}
+						?>
 					</select>
 				</td>
 				<td>
 					<select id="hrFim2">
-						<option>00:00</option>
+						<?php
+						for ($i = 0; $i < 24;$i++) {
+							echo '<option value="'.str_pad($i, 2, "0", STR_PAD_LEFT).':00">'
+								.str_pad($i, 2, "0", STR_PAD_LEFT) . ':00</option>';
+						}
+						?>
 					</select>
 				</td>
 			</tbody>
